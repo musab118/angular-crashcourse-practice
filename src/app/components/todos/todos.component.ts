@@ -19,4 +19,19 @@ export class TodosComponent implements OnInit {
    });
   }
 
+ 
+deleteTodo(todo:Todo){
+// This just filters out items that have been deleted. 
+// basically those with different Id's are still shown
+
+this.todos= this.todos.filter(t=> t.id !== todo.id)
+this.todoService.deleteTodo(todo).subscribe();
+}
+
+addTodo(todo:Todo){
+  this.todoService.addTodo(todo).subscribe(todo=>{
+    this.todos.push(todo)
+  })
+}
+
 }
